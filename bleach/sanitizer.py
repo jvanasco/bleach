@@ -32,6 +32,8 @@ class BleachSanitizerMixin(HTMLSanitizerMixin):
         if (getattr(self, 'wildcard_attributes', None) is None and
             isinstance(self.allowed_attributes, dict)):
             self.wildcard_attributes = self.allowed_attributes.get('*', [])
+            
+        print callable
 
         if token['type'] in (tokenTypes['StartTag'], tokenTypes['EndTag'],
                              tokenTypes['EmptyTag']):

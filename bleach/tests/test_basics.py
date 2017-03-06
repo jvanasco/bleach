@@ -166,6 +166,19 @@ def test_wildcard_attributes():
     eq_(clean, bleach.clean(dirty, tags=TAG, attributes=ATTR))
 
 
+def test_javascript_link():
+    ATTR = {
+        'a': ['href',],
+    }
+    TAG = ['a']
+    dirty = (u"""Start <a href="javascript:alert('BUY VIAGRA')";>Buy Viagra!</a> End""")
+    clean = u'Start <a>Buy Viagra!</a> End'
+    eq_(clean, bleach.clean(dirty, tags=TAG, attributes=ATTR, strip=True))
+
+
+
+
+
 def test_sarcasm():
     """Jokes should crash.<sarcasm/>"""
     dirty = u'Yeah right <sarcasm/>'
